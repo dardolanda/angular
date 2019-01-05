@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { RealHero } from '../realHero'
+import { RELAY_HEROES } from '../mock-heroes' 
 
 @Component({
   selector: 'app-heroes',
@@ -25,6 +26,13 @@ export class HeroesComponent implements OnInit {
     id: 1,
     name: "Windstorm"
   }
+
+  /**
+   * De esta manaera, realacionamos la lista de 
+   * villanos con la variable: silverHeroes
+   * 
+   */
+  silverHeroes = RELAY_HEROES
 
   constructor() { }
 

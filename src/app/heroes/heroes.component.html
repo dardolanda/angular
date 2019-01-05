@@ -1,10 +1,29 @@
 <div>
-  <div> <h2> Héroe: {{hero.name | uppercase}} - Details</h2> </div>
-  <div> <span>id: </span>{{hero.id}} </div>
-  <div> <span>name: </span>{{hero.name}} </div>
+  <div> 
+    <h2> Héroe: {{hero.name | uppercase}} - Details</h2> 
+  </div>
+  <div> 
+    <span>id: </span>{{hero.id}} 
+  </div>
+  <div> 
+    <span>name: </span>{{hero.name}} 
+  </div>
 
   <label> name:
     <input [(ngModel)]="hero.name" placeholder="hero's name" >
   </label>
+
+
+  <div>
+    <h3>One of a Kind:</h3>
+    <ul>
+      <!--
+        NOTAR: 
+      -->
+      <li *ngFor="let silverHero of silverHeroes">
+          <span >{{silverHero.id}}</span> {{silverHero.name}}
+      </li>
+    </ul>
+  </div>
 
 </div>
