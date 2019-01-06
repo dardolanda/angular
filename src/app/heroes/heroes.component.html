@@ -1,29 +1,60 @@
 <div>
-  <div> 
-    <h2> Héroe: {{hero.name | uppercase}} - Details</h2> 
-  </div>
-  <div> 
-    <span>id: </span>{{hero.id}} 
-  </div>
-  <div> 
-    <span>name: </span>{{hero.name}} 
-  </div>
+  <div clas="center">
+    <div> 
+      <h2> Héroe: {{hero.name | uppercase}} - Details</h2> 
+    </div>
+    <div> 
+      <span>id: </span>{{hero.id}} 
+    </div>
+    <div> 
+      <span>name: </span>{{hero.name}} 
+    </div>
 
-  <label> name:
-    <input [(ngModel)]="hero.name" placeholder="hero's name" >
-  </label>
+    <label> name:
+      <input [(ngModel)]="hero.name" placeholder="hero's name" >
+    </label>
+  </div>  
 
+  <div class="center">
+  <div *ngIf="selectedHero">
+    <div> 
+      <h2>Héroe: {{selectedHero.name | uppercase}} - Details</h2> 
+    </div>
+    <div> 
+      <span>id: </span>{{selectedHero.id}} 
+    </div>
+    <div> 
+      <span>name: </span>{{selectedHero.name}} 
+    </div>
+    <label> name:
+        <input [(ngModel)]="selectedHero.name" placeholder="hero's name" >
+    </label>
+  </div>
 
   <div>
-    <h3>One of a Kind:</h3>
-    <ul>
+    <h3 class="heroes.text">One of a Kind:</h3>
+    <ul class="heroes">
       <!--
-        NOTAR: 
+        NOTAR:
+        a) Estamos usando en *ngFor como código JS.        
+        Su equivalente en JS sería:
+        for (let sirlverHero of silverHeroes) {
+          <span> silverHero.id</span>
+          <span> silverHero.name</span>
+        }
+
+        b) (click) -> Es nuestro evento en el cual le 
+        indicamos a Angular, que tiene que "escuchar"
+        el evento click, en cada uno de los componentes 
+        al caul pertenece.
       -->
-      <li *ngFor="let silverHero of silverHeroes">
-          <span >{{silverHero.id}}</span> {{silverHero.name}}
+      <li *ngFor="let silverHero of silverHeroes" 
+        [class.selected]="silverHero === selectedHero"
+        (click)="onSelect(silverHero)">
+          <span class="badge">{{silverHero.id}}</span> {{silverHero.name}}
       </li>
     </ul>
   </div>
 
+</div>
 </div>
