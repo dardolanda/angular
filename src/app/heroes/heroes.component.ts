@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core'
 import { RealHero } from '../realHero'
-import { RELAY_HEROES } from '../mock-heroes' 
+/**
+ * Tener en cuenta que en las primeras versiones de la app
+ * importábamos directamente el modelo en la vista:
+ * import { RELAY_HEROES } from '../mock-heroes'
+ * 
+ * Ahora, vamos a dejar que la información venga desde un
+ * servicio --> HeroService.
+ */
+import { HeroService } from '../hero.service'
 
 @Component({
   selector: 'app-heroes',
@@ -37,6 +45,7 @@ export class HeroesComponent implements OnInit {
    * el evento -> click
    */
   selectedHero : RealHero
+  silverHeroes : RealHero []
   
   /**
    * De esta manaera, realacionamos la lista de 
@@ -44,17 +53,24 @@ export class HeroesComponent implements OnInit {
    * Entonces tenemos un array en el cual podemos
    * iterar en nuestro html --> heroes.component.html
    * 
+   * 
+   * silverHeroes = RELAY_HEROES
    */
-  silverHeroes = RELAY_HEROES
+  
 
-  constructor() { }
+  constructor(private heroService: HeroService) { }
   
   
   ngOnInit() {
-    console.log("testing element for console");
+    console.log("testing element for console")
+    this.getSilverHeroes()
   }
   
+  getSilverHeroes() : void {
+    this.silverHeroes = this.heroService.getRealHeroes()
+  }
+
   onSelect(silverHero: RealHero): void {
-    this.selectedHero = silverHero    
+    this.selectedHero = silverHero
   }
 }
